@@ -7,7 +7,7 @@ Retrieve a huge range of information about local or remote computers. Make confi
 The ALIAS defines the component of your system that you want WMIC to interact with.
 The WHERE clause can be added to filter down to a specific item, e.g. a specific printer instead of all printers.
 
-#Syntax
+Syntax
     WMIC [global_switch(s)] Alias [options] [format]
 
     WMIC [global_switch(s)] Command
@@ -19,7 +19,7 @@ The WHERE clause can be added to filter down to a specific item, e.g. a specific
     Interactive mode:
     WMIC
 
-#Global_Switches:
+    Global_Switches:
      /NODE         Servers to operate against:
                       @filename
                       machine_id <,machine id list>
@@ -40,13 +40,13 @@ The WHERE clause can be added to filter down to a specific item, e.g. a specific
      /TRACE        Output debugging information to stderr.  ON, OFF
      /USER         User for this session:      <domain>\<userid>
 
- CONTEXT       Display the current state of all global switches.
- CLASS         Escape to full WMI schema.
- PATH          Escape to full WMI object paths.
- QUIT/EXIT     Exit WMIC
+     CONTEXT       Display the current state of all global switches.
+     CLASS         Escape to full WMI schema.
+     PATH          Escape to full WMI object paths.
+     QUIT/EXIT     Exit WMIC
 
 
-#Aliases:
+Aliases:
 
        ALIAS               - Access local system aliases [CALL]
        BASEBOARD           - Base board management (motherboard or system board) 
@@ -156,7 +156,7 @@ The CREATE and DELETE options allow you to change the WMI schema itself.
        alias DELETE
        alias ASSOC [/RESULTCLASS:classname] [/RESULTROLE:rolename][/ASSOCCLASS:assocclass]
 
-   For more help
+       For more help
        WMIC alias /?
        WMIC alias option /?
        e.g.
@@ -192,54 +192,54 @@ The last element returned by WMIC is a single <CR> character (an empty line), wh
 The number of WMI properties that can be monitored has increased with every new version of Windows.
 
 Running WMIC within a batch file it can sometimes hang, possible workarounds for this:
-START "" /W CMD /C WMIC options...
-WMIC options... <NUL
+        START "" /W CMD /C WMIC options...
+        WMIC options... <NUL
 
 The WMI information for installed software packages (PACKAGE and SOFTWAREFEATURE) is often incomplete and inconsistent for a variety of historical reasons. A more reliable method is to retrieve a list of installed programs directly from the Add/Remove list in the registry, with a VBScript like this from Torgeir Bakken.
 
-#Examples
+Examples
 
-##:: Display the DELL Serial number (also works for some other brands)
-    WMIC BIOS get serialnumber
+    :: Display the DELL Serial number (also works for some other brands)
+        WMIC BIOS get serialnumber
 
-:: List the OS build and version
-    WMIC OS LIST BRIEF
+    :: List the OS build and version
+        WMIC OS LIST BRIEF
 
-:: List the other available OS information
-    WMIC OS LIST /?
+    :: List the other available OS information
+        WMIC OS LIST /?
 
-:: List the computername, locale and Bootdevice
-    WMIC OS GET csname, locale, bootdevice /value
+    :: List the computername, locale and Bootdevice
+        WMIC OS GET csname, locale, bootdevice /value
 
-    WMIC OS GET osarchitecture /value
+        WMIC OS GET osarchitecture /value
 
-:: Get a list of installed Windows updates on a remote machine, unlike Get-Hotfix, this includes the installation date.
-    WMIC /NODE:"server64" QFE list 
+    :: Get a list of installed Windows updates on a remote machine, unlike Get-Hotfix, this includes the installation date.
+        WMIC /NODE:"server64" QFE list 
 
-:: Get the local date and time
-    WMIC OS GET localdatetime
+    :: Get the local date and time
+        WMIC OS GET localdatetime
 
-:: List all local Disks
-    WMIC LOGICALDISK where drivetype!=4 get deviceid, description, volumename
+    :: List all local Disks
+        WMIC LOGICALDISK where drivetype!=4 get deviceid, description, volumename
 
-:: List ipv4 adapters 
-    WMIC NICCONFIG where (IPEnabled=True and TcpipNetbiosOptions!=null and TcpipNetbiosOptions!=2) GET             caption,index,TcpipNetbiosOptions,IPEnabled
+    :: List ipv4 adapters 
+        WMIC NICCONFIG where (IPEnabled=True and TcpipNetbiosOptions!=null and TcpipNetbiosOptions!=2) GET             caption,index,TcpipNetbiosOptions,IPEnabled
 
-:: Disable Netbios
-    WMIC NICCONFIG where (IPEnabled=True and TcpipNetbiosOptions!=null and TcpipNetbiosOptions!=2) CALL SetTcpipNetbios 2
+    :: Disable Netbios
+        WMIC NICCONFIG where (IPEnabled=True and TcpipNetbiosOptions!=null and TcpipNetbiosOptions!=2) CALL SetTcpipNetbios 2
 
-WMIC NTEVENT List Brief
+    WMIC NTEVENT List Brief
 
-:: List all the running services and save to a file
-    WMIC SERVICE where (state="running") GET caption, name, state > services.tsv
+    :: List all the running services and save to a file
+        WMIC SERVICE where (state="running") GET caption, name, state > services.tsv
 
-:: Stop the TELNET service (also StartService, PauseService,ResumeService)
-    WMIC SERVICE where caption='TELNET' CALL StopService
+    :: Stop the TELNET service (also StartService, PauseService,ResumeService)
+        WMIC SERVICE where caption='TELNET' CALL StopService
 
-:: Display Printer Status
-    WMIC PRINTER LIST brief
-    WMIC PRINTER LIST /?
-    WMIC PRINTER where PortName="LPT1:" GET PortName, Name, ShareName
+    :: Display Printer Status
+        WMIC PRINTER LIST brief
+        WMIC PRINTER LIST /?
+        WMIC PRINTER where PortName="LPT1:" GET PortName, Name, ShareName
 
     WMIC /INTERACTIVE:ON PRINTER where PortName="LPT1:" DELETE
 
@@ -255,7 +255,7 @@ WMIC NTEVENT List Brief
 
     WMIC /node:computer64 SHARE where name="Share1" 
 
-Interactive mode:
-  C:> WMIC
-  wmic:root\cli> OS get csname
-  wmic:root\cli> quit
+    Interactive mode:
+        C:> WMIC
+        wmic:root\cli> OS get csname
+        wmic:root\cli> quit
