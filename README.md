@@ -16,10 +16,10 @@ Syntax
 
     WMIC CONTEXT
 
-Interactive mode:
+    Interactive mode:
     WMIC
 
-Global_Switches:
+    Global_Switches:
      /NODE         Servers to operate against:
                       @filename
                       machine_id <,machine id list>
