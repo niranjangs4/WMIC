@@ -16,10 +16,10 @@ Syntax
 
     WMIC CONTEXT
 
-    Interactive mode:
+Interactive mode:
     WMIC
 
-    Global_Switches:
+Global_Switches:
      /NODE         Servers to operate against:
                       @filename
                       machine_id <,machine id list>
@@ -256,6 +256,6 @@ Examples
     WMIC /node:computer64 SHARE where name="Share1" 
 
     Interactive mode:
-        C:> WMIC
-        wmic:root\cli> OS get csname
-        wmic:root\cli> quit
+    C:> WMIC
+    wmic:root\cli> OS get csname
+    wmic:root\cli> quit
